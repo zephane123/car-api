@@ -34,8 +34,8 @@ class Authentication{
         $header = [
             "typ" => "JWT",
             "alg" => "HS256",
-            "app" => "CarDrivingSchoolManagement",
-            "dev" => "JonZeph"
+            "app" => "TaxiManagement",
+            "dev" => "Cyrynne and Phenelopy"
         ];
         return base64_encode(json_encode($header));
     }
@@ -44,7 +44,7 @@ class Authentication{
         $payload = [
             "uid" => $id,
             "uc" => $username,
-            "email" => "jonzeph2005@gmail.com",
+            "email" => "taxitaxi@gmail.com",
             "date" => date_create(),
             "exp" => date("Y-m-d H-i-s")
         ];
