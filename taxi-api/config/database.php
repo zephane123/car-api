@@ -14,11 +14,11 @@
     }
 
     define("SERVER", "localhost");
-    define("DBASE", "car_db"); //enter your own databasename
+    define("DBASE", "taxi_db"); //enter your own databasename
     define("USER", "root");
     define("PWORD", "");
-    define("TOKEN_KEY","malalatlaga");
-  
+    define("TOKEN_KEY","Token_key");
+    define("SECRET_KEY", "Secret_secret_secret");
 
     class Connection {
       protected $connectionString = "mysql:host=" . SERVER . ";dbname=" .DBASE. ";charset=utf8";
