@@ -35,32 +35,34 @@ class Get extends Common{
     }
 
 
-    public function getCar($id){
+    public function getTaxi($id){
         
         $condition = "isdeleted = 0";
         if($id != null){
             $condition .= " AND id=" . $id; 
         }
 
-        $result = $this->getDataByTable('car_tbl', $condition, $this->pdo);
+        $result = $this->getDataByTable('taxi_tbl', $condition, $this->pdo);
         if($result['code'] == 200){
             return $this->generateResponse($result['data'], "success", "Successfully retrieved records.", $result['code']);
         }
         return $this->generateResponse(null, "failed", $result['errmsg'], $result['code']);
     }
     
-    public function getMenu($id){
+    public function getAccount($id){
         $condition = "isdeleted = 0";
         if($id != null){
             $condition .= " AND id=" . $id; 
         }
 
-        $result = $this->getDataByTable('menu_tbl', $condition, $this->pdo);
+        $result = $this->getDataByTable('accounts_tbl', $condition, $this->pdo);
 
         if($result['code'] == 200){
             return $this->generateResponse($result['data'], "success", "Successfully retrieved records.", $result['code']);
         }
         return $this->generateResponse(null, "failed", $result['errmsg'], $result['code']);
     }
+
 }
 ?>
+
