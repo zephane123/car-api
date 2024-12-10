@@ -18,7 +18,7 @@
     define("USER", "root");
     define("PWORD", "");
     define("TOKEN_KEY","malalatlaga");
-  
+    define("SECRET_KEY", "Your_secret_key");
 
     class Connection {
       protected $connectionString = "mysql:host=" . SERVER . ";dbname=" .DBASE. ";charset=utf8";
