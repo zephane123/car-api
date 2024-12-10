@@ -26,17 +26,17 @@ class Post extends Common{
     }
 
 
-    public function postCar($body){
+    public function postTaxi($body){
       if(is_array($body))
       {
         $body = (object) $body;
       }
-      $result = $this->postData("car_tbl", ["fname" => $body->fname, "lname" => $body->lname], $this->pdo);
+      $result = $this->postData("taxi_tbl", ["id" => $body->id, "fname" => $body->fname, "lname" => $body->lname, "package" => $body->package], $this->pdo);
       if ($result ['code']==200) {
-            $this->logger("Kaliwangbetlognizeph", "POST", "Created a new car record.");
-            return $this->generateResponse($result['data'], "success", "New car record has been successfully created.", 201);
+            $this->logger("Congrats", "POST", "Created a new taxi record.");
+            return $this->generateResponse($result['data'], "success", "New taxi record has been successfully created.", 201);
         }
-        $this->logger("Kaliwangbetlognizeph", "POST", $result['errmsg']);
+        $this->logger("Cyrynne and Phenelopy", "POST", $result['errmsg']);
         return $this->generateResponse(null, "failed", $result['errmsg'], $result['code']);
     }
 }
