@@ -21,10 +21,10 @@ class Archive{
     
             if ($sql->rowCount() > 0) {
                 $code = 200; 
-                $data = ["message" => "Player marked as deleted successfully"];
+                $data = ["message" => "Enrollee marked as deleted successfully"];
             } else {
                 $code = 404; 
-                $data = ["error" => "Player not found or already marked as deleted"];
+                $data = ["error" => "Enrollee not found or already marked as deleted"];
             }
     
             return array("data" => $data, "code" => $code);
@@ -65,7 +65,7 @@ class Archive{
         $code = 0;
     
         try {
-            $sqlString = "UPDATE car_tbl SET isdeleted = 1 WHERE id = ?";
+            $sqlString = "UPDATE accounts_tbl SET isdeleted = 1 WHERE id = ?";
             $sql = $this->pdo->prepare($sqlString);
             $sql->execute([$id]);
     
