@@ -10,21 +10,21 @@ class Archive{
 
 
 
-    public function deleteCar($id) {
+    public function deleteTaxi($id) {
         $errmsg = "";
         $code = 0;
     
         try {
-            $sqlString = "UPDATE car_tbl SET isdeleted = 1 WHERE id = ?";
+            $sqlString = "UPDATE taxi_tbl SET isdeleted = 1 WHERE id = ?";
             $sql = $this->pdo->prepare($sqlString);
             $sql->execute([$id]);
     
             if ($sql->rowCount() > 0) {
                 $code = 200; 
-                $data = ["message" => "Player marked as deleted successfully"];
+                $data = ["message" => "marked as deleted successfully"];
             } else {
                 $code = 404; 
-                $data = ["error" => "Player not found or already marked as deleted"];
+                $data = ["error" => "not found or already marked as deleted"];
             }
     
             return array("data" => $data, "code" => $code);
@@ -35,21 +35,21 @@ class Archive{
             return array("errmsg" => $errmsg, "code" => $code);
         }
     }
-    public function destroyCar($id) {
+    public function destroyTaxi($id) {
         $errmsg = "";
         $code = 0;
     
         try {
-            $sqlString = "DELETE FROM car_tbl WHERE id = ?";
+            $sqlString = "DELETE FROM taxi_tbl WHERE id = ?";
             $sql = $this->pdo->prepare($sqlString);
             $sql->execute([$id]);
     
             if ($sql->rowCount() > 0) {
                 $code = 200; 
-                $data = ["message" => "Player deleted successfully"];
+                $data = ["message" => "deleted successfully"];
             } else {
                 $code = 404; 
-                $data = ["error" => "Player not found"];
+                $data = ["error" => "not found"];
             }
     
             return array("data" => $data, "code" => $code);
@@ -65,16 +65,16 @@ class Archive{
         $code = 0;
     
         try {
-            $sqlString = "UPDATE car_tbl SET isdeleted = 1 WHERE id = ?";
+            $sqlString = "UPDATE accounts_tbl SET isdeleted = 1 WHERE id = ?";
             $sql = $this->pdo->prepare($sqlString);
             $sql->execute([$id]);
     
             if ($sql->rowCount() > 0) {
                 $code = 200; 
-                $data = ["message" => "Player marked as deleted successfully"];
+                $data = ["message" => "marked as deleted successfully"];
             } else {
                 $code = 404; 
-                $data = ["error" => "Player not found or already marked as deleted"];
+                $data = ["error" => "not found or already marked as deleted"];
             }
     
             return array("data" => $data, "code" => $code);
@@ -96,10 +96,10 @@ class Archive{
     
             if ($sql->rowCount() > 0) {
                 $code = 200; 
-                $data = ["message" => "Player deleted successfully"];
+                $data = ["message" => "deleted successfully"];
             } else {
                 $code = 404; 
-                $data = ["error" => "Player not found"];
+                $data = ["error" => "not found"];
             }
     
             return array("data" => $data, "code" => $code);
