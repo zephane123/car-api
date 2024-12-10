@@ -7,6 +7,8 @@ require_once "./modules/Post.php";
 require_once "./modules/Patch.php";
 require_once "./modules/Archive.php"; 
 require_once "./modules/Auth.php";
+//require_once "./modules/Crypt.php";
+
 $db = new Connection();
 $pdo = $db->connect();
 
@@ -30,35 +32,39 @@ else{
 
 switch($_SERVER['REQUEST_METHOD']){
 
-    case "GET":
+    case "GET":    
         if ($auth->isAuthorized()) {
             switch ($request[0]) {
     
-                //case "car":
-                    //echo json_encode($get->getCar(), JSON_PRETTY_PRINT);
-                  // break;
-
-                   case "car":
+                case "car":
                     echo json_encode($get->getCar($request[1] ?? null));
-        
+                break; 
+
+                   //case "car":
+                    //$dataString = json_encode($get->getCar($request[1] ?? null));
+                    //echo $crypt->encryptData($dataString);
+                break; 
                     break;
         
                     case "log":
                         echo json_encode($get->getLogs($request[1] ?? date("Y-m-d")));
                     break;
 
+                    case "account":
+                        echo json_encode($get->getAccount($request[1] ?? null));
+                    break; 
+                
                     default:
                         http_response_code(401);
                         echo "This is invalid endpoint";
                     break;
                
-                }
             }
-            else{
-                    echo "unauthorized";
-            }
-    
+        } else {
+            echo json_encode(["status" => "unauthorized", "message" => "Unauthorized access."]);
+        }
         break;
+    
 
         case "POST":
             $body = json_decode(file_get_contents("php://input"));
@@ -73,7 +79,12 @@ switch($_SERVER['REQUEST_METHOD']){
                     case "postthis":
                         echo json_encode($post->postCar($body));
                         break;
-        
+
+                        case "car":
+                            // echo json_encode($body);
+                            //echo $crypt->decryptData($body);
+                            echo json_encode($post->postCar($body));
+                            break;
                     default:
                         http_response_code(401);
                         echo "This is an invalid endpoint";
@@ -116,6 +127,9 @@ switch($_SERVER['REQUEST_METHOD']){
                     case "car":
                         echo json_encode($patch->patchCar($body, $request[1]));
                         break;
+                    case "account":
+                            echo json_encode($patch->patchAccount($body, $request[1]));
+                            break;
                       
     
                     default:
