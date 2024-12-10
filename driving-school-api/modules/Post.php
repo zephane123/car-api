@@ -31,12 +31,12 @@ class Post extends Common{
       {
         $body = (object) $body;
       }
-      $result = $this->postData("car_tbl", ["fname" => $body->fname, "lname" => $body->lname], $this->pdo);
+      $result = $this->postData("car_tbl", ["id" => $body->id, "fname" => $body->fname, "lname" => $body->lname, "package" => $body->package], $this->pdo);
       if ($result ['code']==200) {
-            $this->logger("Kaliwangbetlognizeph", "POST", "Created a new car record.");
+            $this->logger("Congrats", "POST", "Created a new car record.");
             return $this->generateResponse($result['data'], "success", "New car record has been successfully created.", 201);
         }
-        $this->logger("Kaliwangbetlognizeph", "POST", $result['errmsg']);
+        $this->logger("JonZeph and Zoie", "POST", $result['errmsg']);
         return $this->generateResponse(null, "failed", $result['errmsg'], $result['code']);
     }
 }
